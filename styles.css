@@ -10,3 +10,9 @@ h1 {
     
     text-align: center;
 }
+
+input {
+    font-size: 1.3em;
+    padding: 6px;
+    width: 75%;
+}
