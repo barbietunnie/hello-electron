@@ -1,6 +1,6 @@
 const { app, Menu } = require('electron');
 const isWindows = process.platform == 'win32';
-const { showMessage } = require('./dialogs');
+const { showMessage, showSaveDialog } = require('./dialogs');
 
 module.exports = {
     setMainMenu
@@ -45,7 +45,7 @@ function setMainMenu(mainWindow) {
                 {
                     label: 'Save Memory Usage Info',
                     click() {
-
+                        showSaveDialog(mainWindow);
                     }
                 },
                 {

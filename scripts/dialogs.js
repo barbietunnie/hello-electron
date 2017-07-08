@@ -15,6 +15,22 @@ function showMessage(browserWindow) {
     });
 }
 
+function showSaveDialog(browserWindow) {
+    dialog.showSaveDialog(browserWindow, {
+        defaultPath: path.join(app.getPath('downloads'), 'memory-info.txt')
+    }, (filename) => {
+        if(filename) {
+            const memInfo = JSON.stringify(process.getProcessMemoryInfo());
+            fs.writeFile(filename, memInfo, 'utf-8', (err) => {
+                if(err) {
+                    dialog.showErrorBox("Save failed", err.message);
+                }
+            })
+        }
+    });
+}
+
 module.exports = {
-    showMessage
+    showMessage,
+    showSaveDialog
 };
