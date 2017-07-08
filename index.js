@@ -10,7 +10,7 @@ app.on('ready', () => {
     // showWindowWithMenu();
     // launchWindows();
     interProcessCommunication();
-    ipcMain.on('create-window', () => createBrowserWindow()); // can only listen when the app is ready
+    ipcMain.on('create-window', (event, props) => createBrowserWindow(props)); // can only listen when the app is ready
 });
 
 function interProcessCommunication() {
