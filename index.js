@@ -11,6 +11,7 @@ app.on('ready', () => {
     // launchWindows();
     interProcessCommunication();
     ipcMain.on('create-window', (event, props) => createBrowserWindow(props)); // can only listen when the app is ready
+    ipcMain.on('get-window-count', sendWindowCount);
 });
 
 function interProcessCommunication() {
@@ -43,11 +44,19 @@ function createBrowserWindow(browserWindowOptions) {
             }, 
             browserWindowOptions)
     );
+    windows.push(win);
+    
     win.loadURL(path.join('file://', __dirname, 'interprocess.html'));
     win.on('close', () => {
         windows.splice(windows.indexOf(win), 1);
+        sendWindowCount();
     });
-    windows.push(win);
+}
 
-    // win.show();
+function sendWindowCount() {
+    console.log(windows.length);
+
+    windows.forEach(win => {
+        win.webContents.send('window-count', {count: windows.length});
+    });
 }
