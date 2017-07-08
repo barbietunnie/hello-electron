@@ -3,6 +3,8 @@ const path = require('path');
 
 let mainWindow;
 
+const { setMainMenu } = require('./main-menu');
+
 app.on('ready', () => {
     mainWindow = new BrowserWindow( {
         show: false
@@ -11,4 +13,6 @@ app.on('ready', () => {
     mainWindow.on('ready-to-show', () => {
         mainWindow.show();
     });
+
+    setMainMenu();
 });
