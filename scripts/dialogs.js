@@ -21,7 +21,7 @@ function showSaveDialog(browserWindow) {
     }, (filename) => {
         if(filename) {
             const memInfo = JSON.stringify(process.getProcessMemoryInfo());
-            fs.writeFile(filename, memInfo, 'utf-8', (err) => {
+            fs.writeFile(filename, memInfo, 'utf8', (err) => {
                 if(err) {
                     dialog.showErrorBox("Save failed", err.message);
                 }
@@ -30,7 +30,24 @@ function showSaveDialog(browserWindow) {
     });
 }
 
+function showOpenDialog(browserWindow) {
+    dialog.showOpenDialog(browserWindow, {
+        defaultPath: app.getPath('downloads'),
+        filters: [
+            {
+                name: 'Text Files',
+                extensions: ['txt']
+            }
+        ]
+    }, (filepaths) => {
+        if(filepaths) {
+            console.log(filepaths, fs.readFileSync(filepaths[0], 'utf8'));
+        }
+    });
+}
+
 module.exports = {
     showMessage,
-    showSaveDialog
+    showSaveDialog,
+    showOpenDialog
 };
