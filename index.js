@@ -3,7 +3,7 @@ const path = require('path');
 
 let mainWindow;
 
-const { setMainMenu } = require('./main-menu');
+const { setMainMenu } = require('./scripts/main-menu');
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow( {
@@ -14,5 +14,5 @@ app.on('ready', () => {
         mainWindow.show();
     });
 
-    setMainMenu();
+    setMainMenu(mainWindow);
 });
