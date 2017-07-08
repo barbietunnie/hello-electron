@@ -1,8 +1,12 @@
 body {
+    font-family: 'Open Sans', 'Helvetica', 'sans-serif';
+    padding: 20px 40px;
+}
+
+h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-family: 'Open Sans', 'Helvetica', 'sans-serif';
+    
     text-align: center;
 }
